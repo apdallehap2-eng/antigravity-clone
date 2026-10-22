@@ -1,0 +1,40 @@
+{
+  "name": "antigravity-clone",
+  "productName": "Antigravity Clone",
+  "version": "0.1.0",
+  "description": "Agent-First IDE (استنساخ مبني على تقرير Google Antigravity IDE)",
+  "main": "main.js",
+  "author": "Ehab",
+  "scripts": {
+    "start": "electron .",
+    "dist:win32": "electron-builder --win nsis --ia32",
+    "dist:win64": "electron-builder --win nsis --x64"
+  },
+  "dependencies": {
+    "monaco-editor": "0.34.1"
+  },
+  "optionalDependencies": {
+    "realm": "^11.10.2"
+  },
+  "devDependencies": {
+    "electron": "22.3.27",
+    "electron-builder": "23.6.0"
+  },
+  "build": {
+    "appId": "com.example.antigravityclone",
+    "productName": "Antigravity Clone",
+    "npmRebuild": false,
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "!node_modules/monaco-editor/{esm,dev}/**/*"
+    ],
+    "win": { "target": "nsis" },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "AntigravityClone-Setup-${version}-${arch}.exe"
+    }
+  }
+}
