@@ -1,0 +1,19 @@
+name: build-win32
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm install --omit=optional
+      - run: npx electron-builder --win nsis --ia32 --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AntigravityClone-win32-installer
+          path: dist/*.exe
